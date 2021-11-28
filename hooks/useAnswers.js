@@ -15,7 +15,16 @@ const useAnswers = () => {
     items
       .filter((item) => item.answer)
       .forEach((item) => {
-        newAnswers[item._id] = item.config.default || null
+        switch (item.type) {
+          case "text":
+            newAnswers[item._id] = item.config.required ? null : ""
+            break
+          case "slider":
+            newAnswers[item._id] = item.config.default
+            break
+          default:
+            newAnswers[item._id] = null
+        }
       })
 
     setAnswers(newAnswers)

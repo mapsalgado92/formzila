@@ -7,7 +7,12 @@ const Selection = ({ item, answers }) => {
         <form>
           <div className="select">
             <select
-              onChange={(e) => answers.setAnswer(item._id, e.target.value)}
+              onChange={(e) =>
+                answers.setAnswer(
+                  item._id,
+                  e.target.value ? e.target.value : null
+                )
+              }
             >
               {item.config.selection &&
                 item.config.selection.split(",").map((option, index) => (
